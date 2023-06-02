@@ -30,47 +30,67 @@ def find_image(button_image, region, confidence):
     return location
 
 
-# Gather if possible
-def gather():
-    utl.press_button('space')
-    utl.input_random_sleep()
+# Checks if all marches are in use
+def check_marches():
     utl.press_button('J')
     utl.input_random_sleep()
-    has_all_marches_location = find_image(stp.legion_5_out_of_5, stp.full_screen, stp.more_confidence)
-    if has_all_marches_location:
-        utl.press_button('esc')
-        utl.press_button('space')
-        print("All marches in use.")
+    has_at_least_one_march = find_image(stp.legion_overview, stp.full_screen, stp.more_confidence)
+    if has_at_least_one_march:
+        has_all_marches_location = find_image(stp.legion_5_out_of_5, stp.full_screen, stp.more_confidence)
+        if has_all_marches_location:
+            utl.press_button('space')
+            print("All marches in use.")
+        else:
+            utl.press_button('space')
+            print("At least one march is free. Proceed.")
+        return has_all_marches_location
     else:
-        utl.input_random_sleep()
-        utl.press_button('esc')
-        utl.press_button('F')
-        print("Looking for a node to farm.")
-        if stp.gathering_target == "wood":
+        has_all_marches_location = False
+        print("No marches in use. Proceed.")
+        return has_all_marches_location
+
+
+# Select the resource to find
+def select_resource(target):
+    match target:
+        case "wood":
             selected_location = find_image(stp.logging_camp_selected, stp.full_screen, stp.general_confidence)
             unselected_location = find_image(stp.logging_camp_unselected, stp.full_screen, stp.general_confidence)
             if unselected_location:
                 find_and_click(stp.logging_camp_unselected, stp.full_screen, stp.general_confidence)
                 utl.input_random_sleep()
+                print("Wood selected, proceed.")
             elif selected_location:
-                print("Camp already selected, proceeding...")
-                utl.random_sleep()
-                find_and_click(stp.search_button, stp.full_screen, stp.general_confidence)
-                utl.random_sleep()
-                utl.press_button('K')
-                utl.random_sleep()
-                find_and_click(stp.gather_button, stp.full_screen, stp.general_confidence)
-                utl.random_sleep()
-                find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
-                utl.random_sleep()
-                find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
-                has_deputy = find_image(stp.remove_deputy, stp.full_screen, stp.more_confidence)
-                if has_deputy:
-                    find_and_click(stp.remove_deputy, stp.full_screen, stp.more_confidence)
-                    print("Deputy is removed.")
-                utl.random_sleep()
-                find_and_click(stp.march, stp.full_screen, stp.general_confidence)
-                utl.press_button('space')
+                print("Wood selected, proceed.")
+
+
+# Gather if possible
+def gather():
+    utl.input_random_sleep()
+    has_all_marches_location = check_marches()
+    if not has_all_marches_location:
+        utl.press_button('space')
+        utl.press_button('F')
+        print("Looking for a node to farm.")
+        select_resource(stp.gathering_target)
+        print("Camp already selected, proceeding...")
+        utl.random_sleep()
+        find_and_click(stp.search_button, stp.full_screen, stp.general_confidence)
+        utl.random_sleep()
+        utl.press_button('K')
+        find_and_click(stp.gather_button, stp.full_screen, stp.general_confidence)
+        utl.random_sleep()
+        find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
+        utl.random_sleep()
+        find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
+        has_deputy = find_image(stp.remove_deputy, stp.full_screen, stp.more_confidence)
+        if has_deputy:
+            find_and_click(stp.remove_deputy, stp.full_screen, stp.more_confidence)
+            print("Deputy is removed.")
+        utl.random_sleep()
+        find_and_click(stp.march, stp.full_screen, stp.general_confidence)
+        utl.random_sleep()
+        utl.press_button('space')
 
 
 # Checks if game crashed

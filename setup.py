@@ -40,6 +40,7 @@ ore_mine_selected = 'ore_mine_selected.png'
 gold_mine_unselected = 'gold_mine_unselected.png'
 gold_mine_selected = 'gold_mine_selected.png'
 march = os.path.join(script_dir, '.\\images\\march.png')
+legion_overview = os.path.join(script_dir, '.\\images\\legion_overview.png')
 remove_deputy = os.path.join(script_dir, '.\\images\\remove_deputy.png')
 create_legions = os.path.join(script_dir, '.\\images\\create_legions.png')
 gather_button = os.path.join(script_dir, '.\\images\\gather.png')
