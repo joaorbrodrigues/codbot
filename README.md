@@ -56,6 +56,6 @@
 
 * ☑️ Gather all types of resources
 * ☑️ Training
-* ☑️ Checking notifications before opening menus
+* ☑️ Checking notifications before opening menus (just alliance menu missing)
 * ☑️ Reading and claiming emails
 * ☑️ Auto-building?
