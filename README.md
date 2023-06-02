@@ -5,7 +5,7 @@
 
 **Disclaimer 2** : I'm not a professional developer so my code might seem a bit chaotic.
 
-**Disclaimer 3** : Many things are hard-coded and need a lot of work to improve. Example: I have 5 marches at the game, so I check if there's 5 marches before gathering resources. If you have less, you'll have to adapt it.
+**Disclaimer 3** : Many things are hard-coded and need a lot of work to improve. Example: I have 5 marches at the game, so I check if there are 5 marches before gathering resources. If you have less, you'll have to adapt it.
 
 ## Whay you need to run:
 

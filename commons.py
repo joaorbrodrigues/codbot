@@ -35,6 +35,12 @@ def check_marches():
     utl.press_button('J')
     utl.input_random_sleep()
     has_at_least_one_march = find_image(stp.legion_overview, stp.full_screen, stp.more_confidence)
+    has_returning_march = find_image(stp.returning_march, stp.full_screen, stp.more_confidence)
+    if has_returning_march:
+        has_all_marches_location = True
+        print("There's a march returning, let's wait for it.")
+        utl.press_button('space')
+        return has_all_marches_location
     if has_at_least_one_march:
         has_all_marches_location = find_image(stp.legion_5_out_of_5, stp.full_screen, stp.more_confidence)
         if has_all_marches_location:
@@ -136,7 +142,7 @@ def make_donation():
         print("Donation made.")
     else:
         print("No donations available at the moment.")
-    utl.random_sleep()
+    utl.input_random_sleep()
     utl.press_button('esc')
 
 
@@ -153,7 +159,7 @@ def get_gifts():
         find_and_click(stp.claim_all_icon, stp.full_screen, stp.more_confidence)
         print("All common gifts claimed.")
         utl.press_button('esc')
-    utl.random_sleep()
+    utl.input_random_sleep()
     utl.press_button('esc')
 
 
@@ -162,14 +168,25 @@ def open_alliance():
     alliance_icon_location = find_image(stp.alliance_icon, stp.full_screen, stp.general_confidence)
     if alliance_icon_location:
         utl.press_button('C')
-        utl.input_random_sleep()
     else:
         utl.press_button('A')
-        utl.input_random_sleep()
         utl.press_button('C')
-        utl.input_random_sleep()
-    make_donation()
-    utl.random_sleep()
-    get_gifts()
-    utl.random_sleep()
+    if check_tech_notification():
+        make_donation()
+    utl.input_random_sleep()
+    if check_gift_notification():
+        get_gifts()
+    utl.input_random_sleep()
     utl.press_button('esc')
+
+
+# Checks if there's a gift notification
+def check_gift_notification():
+    gift_notification_location = find_image(stp.gifts_notification, stp.full_screen, stp.more_confidence)
+    return gift_notification_location
+
+
+# Checks if there's a technology donation notification
+def check_tech_notification():
+    tech_notification_location = find_image(stp.technology_notification, stp.full_screen, stp.more_confidence)
+    return tech_notification_location
