@@ -42,19 +42,16 @@ claim_one_button = os.path.join(script_dir, '.\\images\\claim_one.png')
 gifts_notification = os.path.join(script_dir, '.\\images\\gifts_notification.png')
 technology_notification = os.path.join(script_dir, '.\\images\\technology_notification.png')
 
-# Notifications
-notification_red = 'notification_red.png'
-notification_red2 = 'notification_red2.png'
 
 # Outside Castle/Gathering
-logging_camp_unselected = os.path.join(script_dir, '.\\images\\loggin_camp_unselected.png')
-logging_camp_selected = os.path.join(script_dir, '.\\images\\loggin_camp_selected.png')
-mana_pool_unselected = 'mana_pool_unselected.png'
-mana_pool_selected = 'mana_pool_selected.png'
-ore_mine_unselected = 'ore_mine_unselected.png'
-ore_mine_selected = 'ore_mine_selected.png'
-gold_mine_unselected = 'gold_mine_unselected.png'
-gold_mine_selected = 'gold_mine_selected.png'
+wood_unselected = os.path.join(script_dir, '.\\images\\loggin_camp_unselected.png')
+wood_selected = os.path.join(script_dir, '.\\images\\loggin_camp_selected.png')
+mana_unselected = os.path.join(script_dir, '.\\images\\mana_pool_unselected.png')
+mana_selected = os.path.join(script_dir, '.\\images\\mana_pool_selected.png')
+ore_unselected = os.path.join(script_dir, '.\\images\\ore_mine_unselected.png')
+ore_selected = os.path.join(script_dir, '.\\images\\ore_mine_selected.png')
+gold_unselected = os.path.join(script_dir, '.\\images\\gold_mine_unselected.png')
+gold_selected = os.path.join(script_dir, '.\\images\\gold_mine_selected.png')
 march = os.path.join(script_dir, '.\\images\\march.png')
 legion_overview = os.path.join(script_dir, '.\\images\\legion_overview.png')
 remove_deputy = os.path.join(script_dir, '.\\images\\remove_deputy.png')
@@ -67,6 +64,8 @@ returning_march = os.path.join(script_dir, '.\\images\\returning_march.png')
 # General
 confirm_button = os.path.join(script_dir, '.\\images\\confirm.png')
 start_cod_icon = os.path.join(script_dir, '.\\images\\start_cod.png')
+map_icon = os.path.join(script_dir, '.\\images\\map_icon.png')
+profile = os.path.join(script_dir, '.\\images\\profile.png')
 
 # -------------------------------------------------
 
@@ -83,7 +82,5 @@ most_confidence = 0.99
 # -------------------------------------------------
 
 # Gathering
-gathering_target = "wood"
-
-
-
+gathering_target = "ore"
+allow_deputy = False

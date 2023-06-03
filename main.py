@@ -4,6 +4,8 @@ import commons as com
 
 while True:
     utl.long_random_sleep()
+    com.set_initial_position()
+    utl.random_sleep()
     com.do_help()
     utl.random_sleep()
     com.collect_resources()

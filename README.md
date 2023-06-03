@@ -45,16 +45,16 @@
 
 ## Features Implemented:
 
-* ✅ Collect resources inside the castle (they must be visible when you press Space twice)
+* ✅ Collects resources inside the castle (they must be visible when you press Space twice)
 * ✅ Tap the help button
 * ✅ Donations
-* ✅ Claim Gifts
-* ✅ Checks if the game crashed then restarts it
-* ✅ Gather (if you have free marches)
+* ✅ Gifts
+* ✅ Auto re-launch if the game crashes
+* ✅ Re-positioning if the bot gets lost
+* ✅ Gather a selected resource (see setup.py > gathering_target)
 
 ## Backlog:
 
-* ☑️ Gather all types of resources
 * ☑️ Training
 * ☑️ Checking notifications before opening menus (just alliance menu missing)
 * ☑️ Reading and claiming emails
