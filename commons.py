@@ -41,7 +41,7 @@ def check_marches():
         print("There's a march returning, let's wait for it.")
         utl.press_button('space')
         return has_all_marches_location
-    if has_at_least_one_march:
+    elif has_at_least_one_march:
         has_all_marches_location = find_image(stp.legion_5_out_of_5, stp.full_screen, stp.more_confidence)
         if has_all_marches_location:
             utl.press_button('space')
@@ -86,18 +86,19 @@ def gather():
         utl.press_button('K')
         find_and_click(stp.gather_button, stp.full_screen, stp.general_confidence)
         utl.random_sleep()
-        find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
-        utl.random_sleep()
-        find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
-        has_deputy = find_image(stp.remove_deputy, stp.full_screen, stp.more_confidence)
-        if has_deputy:
-            find_and_click(stp.remove_deputy, stp.full_screen, stp.more_confidence)
-            print("Deputy is removed.")
-        utl.random_sleep()
-        find_and_click(stp.march, stp.full_screen, stp.general_confidence)
-        utl.random_sleep()
-        utl.press_button('space')
-
+        create_legions_location = find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
+        if create_legions_location:
+            has_deputy = find_image(stp.remove_deputy, stp.full_screen, stp.more_confidence)
+            if has_deputy:
+                find_and_click(stp.remove_deputy, stp.full_screen, stp.more_confidence)
+                print("Deputy is removed.")
+            utl.random_sleep()
+            find_and_click(stp.march, stp.full_screen, stp.general_confidence)
+            utl.random_sleep()
+            utl.press_button('space')
+        else:
+            utl.press_button('esc')
+            utl.press_button('space')
 
 # Checks if game crashed
 def check_game_crashed():
