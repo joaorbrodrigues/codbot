@@ -60,6 +60,7 @@ gather_button = os.path.join(script_dir, '.\\images\\gather.png')
 search_button = os.path.join(script_dir, '.\\images\\search.png')
 legion_5_out_of_5 = os.path.join(script_dir, '.\\images\\5_marches.png')
 returning_march = os.path.join(script_dir, '.\\images\\returning_march.png')
+marching_to_gather = os.path.join(script_dir, '.\\images\\marching_to_gather.png')
 
 # General
 confirm_button = os.path.join(script_dir, '.\\images\\confirm.png')

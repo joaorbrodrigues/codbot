@@ -36,9 +36,15 @@ def check_marches():
     utl.input_random_sleep()
     has_at_least_one_march = find_image(stp.legion_overview, stp.full_screen, stp.more_confidence)
     has_returning_march = find_image(stp.returning_march, stp.full_screen, stp.more_confidence)
+    is_marching_to_gather = find_image(stp.marching_to_gather, stp.full_screen, stp.more_confidence)
     if has_returning_march:
         has_all_marches_location = True
         print("There's a march returning, let's wait for it.")
+        utl.press_button('space')
+        return has_all_marches_location
+    elif is_marching_to_gather:
+        has_all_marches_location = True
+        print("There's a march going to its destination, let's wait for it.")
         utl.press_button('space')
         return has_all_marches_location
     elif has_at_least_one_march:
