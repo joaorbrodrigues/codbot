@@ -12,9 +12,9 @@ def find_and_click(button_image, region, confidence):
         x = x * np.random.uniform(0.99, 1.01)
         y = y * np.random.uniform(0.99, 1.01)
         pg.click(x, y)
-        print(f"{button_image} is visible and clicked at {location}")
+        print(f"{button_image} is visible and clicked at {location}.")
     else:
-        print(f"{button_image} not found")
+        print(f"{button_image} wasn't found.")
     utl.input_random_sleep()
     return location
 
@@ -23,9 +23,9 @@ def find_and_click(button_image, region, confidence):
 def find_image(button_image, region, confidence):
     location = pg.locateOnScreen(button_image, region=region, confidence=confidence)
     if location:
-        print(f"{button_image} is present at {location}")
+        print(f"{button_image} is visible at {location}.")
     else:
-        print(f"{button_image} isn't present")
+        print(f"{button_image} isn't visible.")
     utl.input_random_sleep()
     return location
 
@@ -56,18 +56,32 @@ def check_marches():
         return has_all_marches_location
 
 
-# Select the resource to find
-def select_resource(target):
+# Switch to the given resource (if unselected, tap on the icon)
+def switch_resource(target):
+    target_selected = None
+    target_unselected = None
     match target:
         case "wood":
-            selected_location = find_image(stp.logging_camp_selected, stp.full_screen, stp.general_confidence)
-            unselected_location = find_image(stp.logging_camp_unselected, stp.full_screen, stp.general_confidence)
-            if unselected_location:
-                find_and_click(stp.logging_camp_unselected, stp.full_screen, stp.general_confidence)
-                utl.input_random_sleep()
-                print("Wood selected, proceed.")
-            elif selected_location:
-                print("Wood selected, proceed.")
+            target_selected = stp.wood_selected
+            target_unselected = stp.wood_unselected
+        case "ore":
+            target_selected = stp.ore_selected
+            target_unselected = stp.ore_unselected
+        case "mana":
+            target_selected = stp.mana_selected
+            target_unselected = stp.mana_unselected
+        case "gold":
+            target_selected = stp.gold_selected
+            target_unselected = stp.gold_unselected
+
+    selected_location = find_image(target_selected, stp.full_screen, stp.general_confidence)
+    unselected_location = find_image(target_unselected, stp.full_screen, stp.general_confidence)
+    if unselected_location:
+        find_and_click(target_unselected, stp.full_screen, stp.general_confidence)
+        utl.input_random_sleep()
+        print(f"{target} selected, proceed.")
+    elif selected_location:
+        print(f"{target} selected, proceed.")
 
 
 # Gather if possible
@@ -78,8 +92,8 @@ def gather():
         utl.press_button('space')
         utl.press_button('F')
         print("Looking for a node to farm.")
-        select_resource(stp.gathering_target)
-        print("Camp already selected, proceeding...")
+        switch_resource(stp.gathering_target)
+        print("Searching for a node...")
         utl.random_sleep()
         find_and_click(stp.search_button, stp.full_screen, stp.general_confidence)
         utl.random_sleep()
@@ -88,10 +102,11 @@ def gather():
         utl.random_sleep()
         create_legions_location = find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
         if create_legions_location:
-            has_deputy = find_image(stp.remove_deputy, stp.full_screen, stp.more_confidence)
-            if has_deputy:
-                find_and_click(stp.remove_deputy, stp.full_screen, stp.more_confidence)
-                print("Deputy is removed.")
+            if not stp.allow_deputy:
+                has_deputy = find_image(stp.remove_deputy, stp.full_screen, stp.more_confidence)
+                if has_deputy:
+                    find_and_click(stp.remove_deputy, stp.full_screen, stp.more_confidence)
+                    print("Deputy is removed.")
             utl.random_sleep()
             find_and_click(stp.march, stp.full_screen, stp.general_confidence)
             utl.random_sleep()
@@ -100,15 +115,18 @@ def gather():
             utl.press_button('esc')
             utl.press_button('space')
 
+
 # Checks if game crashed
 def check_game_crashed():
-    print("checking if game crashed")
+    print("Checking if the game has crashed.")
     utl.input_random_sleep()
     confirm_location = find_image(stp.confirm_button, stp.full_screen, stp.general_confidence)
     if confirm_location:
         utl.long_random_sleep()
         find_and_click(stp.confirm_button, stp.full_screen, stp.general_confidence)
         utl.long_random_sleep()
+    start_location = find_image(stp.confirm_button, stp.full_screen, stp.general_confidence)
+    if start_location:
         find_and_click(stp.start_cod_icon, stp.full_screen, stp.general_confidence)
         utl.long_random_sleep()
 
@@ -155,10 +173,10 @@ def get_gifts():
     common_selected_location = find_image(stp.common_gifts_selected, stp.full_screen, stp.more_confidence)
     if rare_selected_location:
         find_and_click(stp.claim_one_button, stp.full_screen, stp.more_confidence)
-        print("Rare gift claimed.")
+        print("A rare gift was claimed.")
     elif common_selected_location:
         find_and_click(stp.claim_all_icon, stp.full_screen, stp.more_confidence)
-        print("All common gifts claimed.")
+        print("All common gifts were claimed.")
         utl.press_button('esc')
     utl.input_random_sleep()
     utl.press_button('esc')
@@ -191,3 +209,27 @@ def check_gift_notification():
 def check_tech_notification():
     tech_notification_location = find_image(stp.technology_notification, stp.full_screen, stp.more_confidence)
     return tech_notification_location
+
+
+# Set the initial position in case the bot gets lost:
+def set_initial_position():
+    map_icon_location = find_image(stp.map_icon, stp.full_screen, stp.more_confidence)
+    profile_location = find_image(stp.profile, stp.full_screen, stp.more_confidence)
+    if map_icon_location:
+        print("Initial position already set.")
+        return None
+    elif profile_location:
+        print("Oops, we are inside the profile page, let's fix it...")
+        utl.press_button('esc')
+        map_icon_location = find_image(stp.map_icon, stp.full_screen, stp.more_confidence)
+        if map_icon_location:
+            print("Initial position set.")
+            return None
+        else:
+            utl.press_button('space')
+            print("Initial position set.")
+            return None
+    else:
+        utl.press_button('space')
+        print("Initial position set.")
+        return None
