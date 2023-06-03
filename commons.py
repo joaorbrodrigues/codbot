@@ -233,3 +233,83 @@ def set_initial_position():
         utl.press_button('space')
         print("Initial position set.")
         return None
+
+
+# Train Angels is possible
+def train_angels():
+    utl.press_button('K')
+    find_and_click(stp.celestial_train, stp.full_screen, stp.general_confidence)
+    train_location = find_image(stp.train_button, stp.full_screen, stp.general_confidence)
+    if train_location:
+        find_and_click(stp.train_button, stp.full_screen, stp.general_confidence)
+        print("Training more angels...")
+        utl.press_button('esc')
+    else:
+        print("No angels to train now. Skipping...")
+        utl.press_button('esc')
+
+
+# Train Knights is possible
+def train_knights():
+    utl.press_button('D')
+    find_and_click(stp.knight_train, stp.full_screen, stp.general_confidence)
+    train_location = find_image(stp.train_button, stp.full_screen, stp.general_confidence)
+    if train_location:
+        find_and_click(stp.train_button, stp.full_screen, stp.general_confidence)
+        print("Training more knights...")
+        utl.press_button('esc')
+    else:
+        print("No knights to train now. Skipping...")
+        utl.press_button('esc')
+
+
+# Train Ballistas is possible
+def train_ballistas():
+    utl.press_button('L')
+    find_and_click(stp.ballista_train, stp.full_screen, stp.general_confidence)
+    train_location = find_image(stp.train_button, stp.full_screen, stp.general_confidence)
+    if train_location:
+        find_and_click(stp.train_button, stp.full_screen, stp.general_confidence)
+        print("Training more ballistas...")
+        utl.press_button('esc')
+    else:
+        print("No ballistas to train now. Skipping...")
+        utl.press_button('esc')
+
+
+# Train Vestals is possible
+def train_vestals():
+    utl.press_button('I')
+    find_and_click(stp.abbey_train, stp.full_screen, stp.general_confidence)
+    train_location = find_image(stp.train_button, stp.full_screen, stp.general_confidence)
+    if train_location:
+        find_and_click(stp.train_button, stp.full_screen, stp.general_confidence)
+        print("Training more vestals...")
+        utl.press_button('esc')
+    else:
+        print("No vestals to train now. Skipping...")
+        utl.press_button('esc')
+
+
+# Train Swordsmen is possible
+def train_swordsmen():
+    utl.press_button('E')
+    find_and_click(stp.swordsmen_train, stp.full_screen, stp.general_confidence)
+    train_location = find_image(stp.train_button, stp.full_screen, stp.general_confidence)
+    if train_location:
+        find_and_click(stp.train_button, stp.full_screen, stp.general_confidence)
+        print("Training more swordsmen...")
+        utl.press_button('esc')
+    else:
+        print("No swordsmen to train now. Skipping...")
+        utl.press_button('esc')
+
+
+# Checks training camps
+def check_training_camps():
+    set_initial_position()
+    train_angels()
+    train_knights()
+    train_ballistas()
+    train_vestals()
+    train_swordsmen()

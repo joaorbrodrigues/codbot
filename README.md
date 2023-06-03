@@ -52,10 +52,10 @@
 * ✅ Auto re-launch if the game crashes
 * ✅ Re-positioning if the bot gets lost
 * ✅ Gather a selected resource (see setup.py > gathering_target)
+* ✅ Training Troops (new keybinding available)
 
 ## Backlog:
 
-* ☑️ Training
 * ☑️ Checking notifications before opening menus (just alliance menu missing)
 * ☑️ Reading and claiming emails
 * ☑️ Auto-building?

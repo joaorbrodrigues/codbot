@@ -6,6 +6,7 @@ while True:
     com.set_initial_position()
     com.do_help()
     com.collect_resources()
+    com.check_training_camps()
     com.open_alliance()
     com.gather()
     com.check_game_crashed()

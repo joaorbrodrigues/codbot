@@ -31,6 +31,7 @@ knight_camp = os.path.join(script_dir, '.\\images\\knight_camp.png')
 knight_train = os.path.join(script_dir, '.\\images\\knight_train.png')
 swordsmen_camp = os.path.join(script_dir, '.\\images\\swordsmen_camp.png')
 swordsmen_train = os.path.join(script_dir, '.\\images\\swordsmen_train.png')
+train_button = os.path.join(script_dir, '.\\images\\train.png')
 
 # Alliance Menu
 donate_button = os.path.join(script_dir, '.\\images\\donate.png')
