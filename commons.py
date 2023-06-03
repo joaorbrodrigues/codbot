@@ -94,12 +94,9 @@ def gather():
         print("Looking for a node to farm.")
         switch_resource(stp.gathering_target)
         print("Searching for a node...")
-        utl.random_sleep()
         find_and_click(stp.search_button, stp.full_screen, stp.general_confidence)
-        utl.random_sleep()
         utl.press_button('K')
         find_and_click(stp.gather_button, stp.full_screen, stp.general_confidence)
-        utl.random_sleep()
         create_legions_location = find_and_click(stp.create_legions, stp.full_screen, stp.general_confidence)
         if create_legions_location:
             if not stp.allow_deputy:
@@ -107,9 +104,7 @@ def gather():
                 if has_deputy:
                     find_and_click(stp.remove_deputy, stp.full_screen, stp.more_confidence)
                     print("Deputy is removed.")
-            utl.random_sleep()
             find_and_click(stp.march, stp.full_screen, stp.general_confidence)
-            utl.random_sleep()
             utl.press_button('space')
         else:
             utl.press_button('esc')
@@ -125,7 +120,7 @@ def check_game_crashed():
         utl.long_random_sleep()
         find_and_click(stp.confirm_button, stp.full_screen, stp.general_confidence)
         utl.long_random_sleep()
-    start_location = find_image(stp.confirm_button, stp.full_screen, stp.general_confidence)
+    start_location = find_image(stp.start_cod_icon, stp.full_screen, stp.general_confidence)
     if start_location:
         find_and_click(stp.start_cod_icon, stp.full_screen, stp.general_confidence)
         utl.long_random_sleep()
@@ -134,7 +129,7 @@ def check_game_crashed():
 # Performs the help action if the notification is visible
 def do_help():
     utl.press_button('A')
-    utl.random_sleep()
+    # utl.random_sleep()
     help_location = find_image(stp.help_icon, stp.full_screen, stp.general_confidence)
     if help_location:
         utl.press_button('B')
@@ -154,7 +149,7 @@ def collect_resources():
 # Makes a donation if an opportunity exists
 def make_donation():
     utl.press_button('T')
-    utl.random_sleep()
+    # utl.random_sleep()
     donate_button_location = find_image(stp.donate_button, stp.full_screen, stp.more_confidence)
     if donate_button_location:
         find_and_click(stp.donate_button, stp.full_screen, stp.more_confidence)
@@ -168,7 +163,6 @@ def make_donation():
 # Get the gifts received
 def get_gifts():
     utl.press_button('G')
-    utl.random_sleep()
     rare_selected_location = find_image(stp.rare_gifts_selected, stp.full_screen, stp.more_confidence)
     common_selected_location = find_image(stp.common_gifts_selected, stp.full_screen, stp.more_confidence)
     if rare_selected_location:
