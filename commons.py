@@ -122,7 +122,8 @@ def check_game_crashed():
     print("Checking if the game has crashed.")
     utl.input_random_sleep()
     confirm_location = find_image(stp.confirm_button, stp.full_screen, stp.general_confidence)
-    if confirm_location:
+    confirm_location2 = find_image(stp.confirm_button2, stp.full_screen, stp.general_confidence)
+    if confirm_location or confirm_location2:
         utl.long_random_sleep()
         find_and_click(stp.confirm_button, stp.full_screen, stp.general_confidence)
         utl.long_random_sleep()

@@ -65,6 +65,7 @@ marching_to_gather = os.path.join(script_dir, '.\\images\\marching_to_gather.png
 
 # General
 confirm_button = os.path.join(script_dir, '.\\images\\confirm.png')
+confirm_button2 = os.path.join(script_dir, '.\\images\\confirm_2.png.png')
 start_cod_icon = os.path.join(script_dir, '.\\images\\start_cod.png')
 map_icon = os.path.join(script_dir, '.\\images\\map_icon.png')
 profile = os.path.join(script_dir, '.\\images\\profile.png')
@@ -84,5 +85,5 @@ most_confidence = 0.99
 # -------------------------------------------------
 
 # Gathering
-gathering_target = "ore"
+gathering_target = "mana"
 allow_deputy = False
